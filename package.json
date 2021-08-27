@@ -29,6 +29,7 @@
   "scripts": {
     "test": "jest  --detectOpenHandles --testEnvironment=node --unhandled-rejections=strict --verbose --forceExit  --maxWorkers=1",
     "start": "nodemon ./dist/index.js",
+    "boot": "node ./dist/index.js",
     "tsc": "tsc  src/*"
   }
 }
