@@ -1,0 +1,35 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.validateMatchStatus = exports.validateMatchSchedule = void 0;
+var express_validator_1 = require("express-validator");
+// eslint-disable-next-line import/prefer-default-export
+exports.validateMatchSchedule = [
+    express_validator_1.check('opponents')
+        .notEmpty()
+        .isArray()
+        .withMessage('invalid format for opponents'),
+    express_validator_1.check('time')
+        .optional()
+        .isString()
+        .withMessage('invalid format for time')
+        .trim(),
+    express_validator_1.check('result')
+        .isString()
+        .withMessage('invalid format for result')
+        .trim(),
+    express_validator_1.check('status')
+        .isString()
+        .withMessage('invalid format for status')
+        .notEmpty()
+        .trim(),
+];
+var validateMatchStatus = function (key) { return ([
+    express_validator_1.check(key)
+        .notEmpty()
+        .isString()
+        .withMessage('invalid format for status')
+        .notEmpty()
+        .withMessage(' match status cannot be empty')
+        .trim(),
+]); };
+exports.validateMatchStatus = validateMatchStatus;
