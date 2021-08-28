@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import {validate,validateId} from '../middlewares/commonValidators/validate';
-import {  validateMatchSchedule, validateMatchStatus } from '../middlewares/validator/validateMatchSchedule';
+import {  validateMatchSchedule, validateMatchStatus, validateMatchResult } from '../middlewares/validator/validateMatchSchedule';
 import MatchSheduleController from '../controller/MatchSheduleController';
 
 
@@ -27,7 +27,7 @@ router.put(
 
 router.put(
   '/update_match_result/:result/:matchid',
-  validateMatchStatus("result"),
+  validateMatchResult("result"),
   validateId("matchid"),
   validate,
   (...args:any[]) => MatchSheduleController.updateMatchResult(args[0], args[1])

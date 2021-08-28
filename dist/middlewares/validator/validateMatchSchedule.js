@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validateMatchStatus = exports.validateMatchSchedule = void 0;
+exports.validateMatchResult = exports.validateMatchStatus = exports.validateMatchSchedule = void 0;
 var express_validator_1 = require("express-validator");
 // eslint-disable-next-line import/prefer-default-export
 exports.validateMatchSchedule = [
@@ -36,6 +36,23 @@ var validateMatchStatus = function (key) { return ([
         .withMessage('invalid format for status')
         .notEmpty()
         .withMessage(' match status cannot be empty')
-        .trim(),
+        .toLowerCase()
+        .trim()
+        .isIn(['win', 'lose', 'draw'])
+        .withMessage('Invalid \'result\'. Acceptable types: [\'win\', \'lose\', \'draw\'] ')
 ]); };
 exports.validateMatchStatus = validateMatchStatus;
+var validateMatchResult = function (key) { return ([
+    express_validator_1.check(key)
+        .notEmpty()
+        .isString()
+        .withMessage('invalid format for status')
+        .notEmpty()
+        .withMessage(' match status cannot be empty')
+        .toLowerCase()
+        .trim()
+        .toLowerCase()
+        .isIn(['finished', 'canceled', 'postponed', 'ongoing', 'pending'])
+        .withMessage('Invalid \'status\'. Acceptable types: [\'finished\', \'canceled\', \'postponed\', \'ongoing\', \'pending\'] ')
+]); };
+exports.validateMatchResult = validateMatchResult;

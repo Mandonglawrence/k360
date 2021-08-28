@@ -23,7 +23,7 @@ router.put('/update_match_status/:status/:matchid', validateMatchSchedule_1.vali
     }
     return MatchSheduleController_1.default.updateMatchStatus(args[0], args[1]);
 });
-router.put('/update_match_result/:result/:matchid', validateMatchSchedule_1.validateMatchStatus("result"), validate_1.validateId("matchid"), validate_1.validate, function () {
+router.put('/update_match_result/:result/:matchid', validateMatchSchedule_1.validateMatchResult("result"), validate_1.validateId("matchid"), validate_1.validate, function () {
     var args = [];
     for (var _i = 0; _i < arguments.length; _i++) {
         args[_i] = arguments[_i];
