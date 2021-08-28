@@ -87,9 +87,37 @@ var FootBallTeamController = /** @class */ (function () {
     /**
      *
      */
+    FootBallTeamController.prototype.updateTeam = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var teamData, result, error_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, express_validator_1.matchedData(req)];
+                    case 1:
+                        teamData = __rest.apply(void 0, [_a.sent(), []]);
+                        _a.label = 2;
+                    case 2:
+                        _a.trys.push([2, 4, , 5]);
+                        return [4 /*yield*/, this.FootBallTeamService.updateTeam(teamData)];
+                    case 3:
+                        result = _a.sent();
+                        res.status(200).json(result);
+                        return [3 /*break*/, 5];
+                    case 4:
+                        error_2 = _a.sent();
+                        console.log("error", error_2);
+                        return [3 /*break*/, 5];
+                    case 5: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    /**
+     *
+     */
     FootBallTeamController.prototype.listTeams = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var result, error_2;
+            var result, error_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -100,8 +128,8 @@ var FootBallTeamController = /** @class */ (function () {
                         res.status(200).json(result);
                         return [3 /*break*/, 3];
                     case 2:
-                        error_2 = _a.sent();
-                        console.log("error", error_2);
+                        error_3 = _a.sent();
+                        console.log("error", error_3);
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
                 }
@@ -113,7 +141,7 @@ var FootBallTeamController = /** @class */ (function () {
      */
     FootBallTeamController.prototype.listTeamPlayers = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var teamData, result, error_3;
+            var teamData, result, error_4;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, express_validator_1.matchedData(req)];
@@ -128,8 +156,8 @@ var FootBallTeamController = /** @class */ (function () {
                         res.status(200).json(result);
                         return [3 /*break*/, 5];
                     case 4:
-                        error_3 = _a.sent();
-                        console.log("error", error_3);
+                        error_4 = _a.sent();
+                        console.log("error", error_4);
                         return [3 /*break*/, 5];
                     case 5: return [2 /*return*/];
                 }

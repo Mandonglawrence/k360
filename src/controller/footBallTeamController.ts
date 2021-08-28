@@ -27,6 +27,22 @@ class FootBallTeamController {
   /**
    *
    */ 
+  async updateTeam(req:Request, res:Response) {
+    // console.log(`payload`, req.body)      
+    const {...teamData} = await matchedData(req);
+    // console.log(`teamData`, teamData)
+
+
+    try {
+      const result = await this.FootBallTeamService.updateTeam(teamData);
+      res.status(200).json(result);
+    } catch (error) {
+     console.log(`error`, error)
+    }
+  }
+  /**
+   *
+   */ 
   async listTeams(req:Request, res:Response) {
     // console.log(`payload`, req.body)      
     // console.log(`teamData`, teamData)

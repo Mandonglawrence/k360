@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import connectionURI  from './env';
  const myConnection = async function connectToCluster(){
-   console.log(`connectionURI`, connectionURI)
     await mongoose.connect(`${connectionURI}`,
     {
       useNewUrlParser: true,

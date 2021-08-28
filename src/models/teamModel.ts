@@ -18,13 +18,11 @@ const FootballTeamSchema = new mongoose.Schema({
     max: 255,
   },
   captain: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Player',
+    type: String,
     required: false,
   },
   vice_captain: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Player',
+    type: String,
     required: false,
   },
   manager: { 

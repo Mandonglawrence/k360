@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -82,9 +93,83 @@ var FootBallTeamService = /** @class */ (function () {
             });
         });
     };
+    /**
+     *
+     */
+    FootBallTeamService.prototype.updateTeam = function (teamData) {
+        return __awaiter(this, void 0, void 0, function () {
+            var captain, vice_captain, updatedTeam, message, teamid, matchQuery, teamExist, _id, e_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 16, , 17]);
+                        captain = void 0;
+                        vice_captain = void 0;
+                        updatedTeam = {};
+                        message = "Team updated successfully";
+                        teamid = teamData.teamid;
+                        matchQuery = { _id: teamid };
+                        return [4 /*yield*/, teamModel_1.default.findOne(matchQuery).select("-_id -__v")];
+                    case 1:
+                        teamExist = _a.sent();
+                        if (!teamExist._doc) return [3 /*break*/, 14];
+                        teamData = __assign(__assign({}, teamExist._doc), teamData);
+                        _id = teamData.teamid;
+                        if (!(teamData.captain || teamData.vice_captain)) return [3 /*break*/, 11];
+                        if (!teamData.captain) return [3 /*break*/, 5];
+                        return [4 /*yield*/, playerModel_1.default.findOne({ name: teamData.captain })];
+                    case 2:
+                        captain = _a.sent();
+                        if (!(teamData.captain && captain.foot_ball_team == teamid)) return [3 /*break*/, 3];
+                        return [3 /*break*/, 5];
+                    case 3: return [4 /*yield*/, delete teamData.captain];
+                    case 4:
+                        _a.sent();
+                        message = (teamData.vice_captain) ? "captain not found in team's players and hence, not added" : "Team updated successfully";
+                        _a.label = 5;
+                    case 5:
+                        if (!teamData.vice_captain) return [3 /*break*/, 9];
+                        return [4 /*yield*/, playerModel_1.default.findOne({ name: teamData.vice_captain })];
+                    case 6:
+                        vice_captain = _a.sent();
+                        if (!(teamData.vice_captain && vice_captain.foot_ball_team == teamid)) return [3 /*break*/, 7];
+                        return [3 /*break*/, 9];
+                    case 7:
+                        message = (teamData.vice_captain) ? "vice_captain not found in team's players and hence, not added" : "Team updated successfully";
+                        return [4 /*yield*/, delete teamData.vice_captain];
+                    case 8:
+                        _a.sent();
+                        _a.label = 9;
+                    case 9: return [4 /*yield*/, teamModel_1.default.findByIdAndUpdate({ _id: _id }, __assign({}, teamData), { new: true })];
+                    case 10:
+                        updatedTeam = _a.sent();
+                        return [3 /*break*/, 13];
+                    case 11:
+                        delete teamData.teamid;
+                        delete teamData.number_of_players;
+                        delete teamData._id;
+                        message = "Team updated successfully";
+                        return [4 /*yield*/, teamModel_1.default.findByIdAndUpdate({ _id: _id }, __assign({}, teamData), { new: true })];
+                    case 12:
+                        updatedTeam = _a.sent();
+                        _a.label = 13;
+                    case 13: return [3 /*break*/, 15];
+                    case 14:
+                        message = "Team  with specified name or alias does not exist";
+                        _a.label = 15;
+                    case 15: return [2 /*return*/, { updatedTeam: updatedTeam, message: message }];
+                    case 16:
+                        e_2 = _a.sent();
+                        // console.log(e.message);
+                        return [2 /*return*/, { message: e_2.message.includes("duplicate") ? "team name / alias already exists, please chose a different" : "something went wrong, make sure captain / vice captain is/are in the team's players" }];
+                    case 17: return [2 /*return*/];
+                }
+            });
+        });
+    };
     FootBallTeamService.prototype.listTeams = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var teams, message, e_2;
+            var teams, message, e_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -99,8 +184,8 @@ var FootBallTeamService = /** @class */ (function () {
                         }
                         return [3 /*break*/, 3];
                     case 2:
-                        e_2 = _a.sent();
-                        console.log(e_2);
+                        e_3 = _a.sent();
+                        console.log(e_3);
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
                 }
@@ -109,7 +194,7 @@ var FootBallTeamService = /** @class */ (function () {
     };
     FootBallTeamService.prototype.listTeamPlayers = function (teamData) {
         return __awaiter(this, void 0, void 0, function () {
-            var players, message, e_3;
+            var players, message, e_4;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -124,8 +209,8 @@ var FootBallTeamService = /** @class */ (function () {
                         }
                         return [3 /*break*/, 3];
                     case 2:
-                        e_3 = _a.sent();
-                        console.log(e_3);
+                        e_4 = _a.sent();
+                        console.log(e_4);
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
                 }

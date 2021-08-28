@@ -21,12 +21,12 @@ exports.validateFootBallTeam = [
         .trim(),
     express_validator_1.check('captain')
         .optional()
-        .isMongoId()
+        .isString()
         .withMessage('invalid format for captain')
         .trim(),
     express_validator_1.check('vice_captain')
         .optional()
-        .isMongoId()
+        .isString()
         .withMessage('invalid format for vice_captain'),
     express_validator_1.check('manager.name')
         .notEmpty()

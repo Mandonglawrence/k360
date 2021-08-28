@@ -19,12 +19,12 @@ export const validateFootBallTeam = [
     .trim(),
   check('captain')
     .optional()
-    .isMongoId()
+    .isString()
     .withMessage('invalid format for captain')
     .trim(),
   check('vice_captain')
     .optional()
-    .isMongoId()
+    .isString()
     .withMessage('invalid format for vice_captain'),
   check('manager.name')
     .notEmpty()

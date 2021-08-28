@@ -16,6 +16,13 @@ router.post('/create_team', validateFootBallTeam_1.validateFootBallTeam, validat
     }
     return footBallTeamController_1.default.createTeam(args[0], args[1]);
 });
+router.put('/update_team/:teamid', validateFootBallTeam_1.validateFootBallTeam, validate_1.validateId("teamid"), validate_1.validate, function () {
+    var args = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        args[_i] = arguments[_i];
+    }
+    return footBallTeamController_1.default.updateTeam(args[0], args[1]);
+});
 router.get('/list_team_player/:teamid', validate_1.validateId("teamid"), validate_1.validate, function () {
     var args = [];
     for (var _i = 0; _i < arguments.length; _i++) {
