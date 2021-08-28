@@ -37,8 +37,10 @@ export const validateMatchStatus = (key:string)=>(
     .withMessage(' match status cannot be empty')
     .toLowerCase()
     .trim()
-    .isIn(['win', 'lose', 'draw'])
-    .withMessage('Invalid \'result\'. Acceptable types: [\'win\', \'lose\', \'draw\'] ')
+    .toLowerCase()
+    .isIn(['finished', 'canceled', 'postponed', 'ongoing', 'pending'])
+    .withMessage('Invalid \'status\'. Acceptable types: [\'finished\', \'canceled\', \'postponed\', \'ongoing\', \'pending\'] ')
+    
   
 ]);
  
@@ -52,9 +54,9 @@ export const validateMatchResult = (key:string)=>(
     .withMessage(' match status cannot be empty')
     .toLowerCase()
     .trim()
-    .toLowerCase()
-    .isIn(['finished', 'canceled', 'postponed', 'ongoing', 'pending'])
-    .withMessage('Invalid \'status\'. Acceptable types: [\'finished\', \'canceled\', \'postponed\', \'ongoing\', \'pending\'] ')
+    .isIn(['win', 'lose', 'draw'])
+    .withMessage('Invalid \'result\'. Acceptable types: [\'win\', \'lose\', \'draw\'] ')
+    
   
 ]);
  

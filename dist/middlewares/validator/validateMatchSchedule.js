@@ -38,8 +38,9 @@ var validateMatchStatus = function (key) { return ([
         .withMessage(' match status cannot be empty')
         .toLowerCase()
         .trim()
-        .isIn(['win', 'lose', 'draw'])
-        .withMessage('Invalid \'result\'. Acceptable types: [\'win\', \'lose\', \'draw\'] ')
+        .toLowerCase()
+        .isIn(['finished', 'canceled', 'postponed', 'ongoing', 'pending'])
+        .withMessage('Invalid \'status\'. Acceptable types: [\'finished\', \'canceled\', \'postponed\', \'ongoing\', \'pending\'] ')
 ]); };
 exports.validateMatchStatus = validateMatchStatus;
 var validateMatchResult = function (key) { return ([
@@ -51,8 +52,7 @@ var validateMatchResult = function (key) { return ([
         .withMessage(' match status cannot be empty')
         .toLowerCase()
         .trim()
-        .toLowerCase()
-        .isIn(['finished', 'canceled', 'postponed', 'ongoing', 'pending'])
-        .withMessage('Invalid \'status\'. Acceptable types: [\'finished\', \'canceled\', \'postponed\', \'ongoing\', \'pending\'] ')
+        .isIn(['win', 'lose', 'draw'])
+        .withMessage('Invalid \'result\'. Acceptable types: [\'win\', \'lose\', \'draw\'] ')
 ]); };
 exports.validateMatchResult = validateMatchResult;
