@@ -1,3 +1,4 @@
 import dotenv from 'dotenv';
 dotenv.config();
-export const connectionURI : string = process.env.MONGO_URI; 
+const connectionURI : any = process.env.MONGO_URI; 
+export default connectionURI; 

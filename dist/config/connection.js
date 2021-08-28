@@ -40,24 +40,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose_1 = __importDefault(require("mongoose"));
-var env_1 = require("./env");
+var env_1 = __importDefault(require("./env"));
 var myConnection = function connectToCluster() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, mongoose_1.default.connect(env_1.connectionURI, {
-                        useNewUrlParser: true,
-                        useCreateIndex: true,
-                        useFindAndModify: false,
-                        useUnifiedTopology: true,
-                    }, function (err) {
-                        if (!err) {
-                            console.log("mongodb connected successfully");
-                        }
-                        else {
-                            console.log("mongodb connection failed");
-                        }
-                    })];
+                case 0:
+                    console.log("connectionURI", env_1.default);
+                    return [4 /*yield*/, mongoose_1.default.connect("" + env_1.default, {
+                            useNewUrlParser: true,
+                            useCreateIndex: true,
+                            useFindAndModify: false,
+                            useUnifiedTopology: true,
+                        }, function (err) {
+                            if (!err) {
+                                console.log("mongodb connected successfully");
+                            }
+                            else {
+                                console.log("err", err);
+                                console.log("mongodb connection failed");
+                            }
+                        })];
                 case 1:
                     _a.sent();
                     return [2 /*return*/];

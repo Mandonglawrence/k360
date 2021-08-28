@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
-import { connectionURI } from './env';
+import connectionURI  from './env';
  const myConnection = async function connectToCluster(){
-    await mongoose.connect(connectionURI,
+   console.log(`connectionURI`, connectionURI)
+    await mongoose.connect(`${connectionURI}`,
     {
       useNewUrlParser: true,
       useCreateIndex: true,
@@ -12,7 +13,10 @@ import { connectionURI } from './env';
       if (!err) {
         console.log("mongodb connected successfully")
       }
-      else{console.log("mongodb connection failed")}
+      else{
+        console.log(`err`, err)
+        console.log("mongodb connection failed")
+      }
     }
     )
      

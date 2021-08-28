@@ -14,12 +14,18 @@ export const validateMatchSchedule = [
   check('result')
     .isString()
     .withMessage('invalid format for result')
-    .trim(),
+    .trim()
+    .toLowerCase()
+    .isIn(['win', 'lose', 'draw'])
+    .withMessage('Invalid \'result\'. Acceptable types: [\'win\', \'lose\', \'draw\'] '),
   check('status')
     .isString()
     .withMessage('invalid format for status')
     .notEmpty()
-    .trim(),
+    .trim()
+    .toLowerCase()
+    .isIn(['finished', 'canceled', 'postponed', 'ongoing', 'pending'])
+    .withMessage('Invalid \'status\'. Acceptable types: [\'finished\', \'canceled\', \'postponed\', \'ongoing\', \'pending\'] ')
 ];
 export const validateMatchStatus = (key:string)=>(
   [

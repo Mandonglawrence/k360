@@ -16,12 +16,18 @@ exports.validateMatchSchedule = [
     express_validator_1.check('result')
         .isString()
         .withMessage('invalid format for result')
-        .trim(),
+        .trim()
+        .toLowerCase()
+        .isIn(['win', 'lose', 'draw'])
+        .withMessage('Invalid \'result\'. Acceptable types: [\'win\', \'lose\', \'draw\'] '),
     express_validator_1.check('status')
         .isString()
         .withMessage('invalid format for status')
         .notEmpty()
-        .trim(),
+        .trim()
+        .toLowerCase()
+        .isIn(['finished', 'canceled', 'postponed', 'ongoing', 'pending'])
+        .withMessage('Invalid \'status\'. Acceptable types: [\'finished\', \'canceled\', \'postponed\', \'ongoing\', \'pending\'] ')
 ];
 var validateMatchStatus = function (key) { return ([
     express_validator_1.check(key)
